@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import { Geist, Geist_Mono , Roboto } from "next/font/google";
 import Navbar from '@/components/Navbar'
 import { ThemeProvider } from '@/components/ThemeProvider'
+import Footer from '@/components/Footer'
 import "./globals.css";
 
 const geistSans = Geist({
@@ -38,9 +39,12 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
           enableSystem
           disableTransitionOnChange
         >
-          <div className=" min-h-screen">
+          <div className="flex min-h-screen flex-col">
             <Navbar />
-            {children}
+            <main className="flex-1">
+              {children}
+            </main>
+            <Footer />
           </div>
         </ThemeProvider>
       </body>
