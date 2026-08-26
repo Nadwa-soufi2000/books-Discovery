@@ -8,7 +8,23 @@ import { useState } from "react"
 import { Button } from "@/components/ui/button"
 import { ModeToggle } from "./Mode"
 
-const navItems = ["Home", "Search", "Categories"]
+const navItems = 
+[
+  {
+    linkName: "Home",
+    linkHref: "/"
+  }
+  ,
+  {
+    linkName: "Search",
+    linkHref: "/search"
+  }
+  ,
+  {
+    linkName: "Categories",
+    linkHref: "/categories"
+  }
+ ]
 
 export default function Navbar() {
   const [isMenuOpen, setIsMenuOpen] = useState(false)
@@ -39,10 +55,10 @@ export default function Navbar() {
         </div>
 
         <ul className="hidden items-center justify-center gap-6 text-sm font-medium text-gray-700 dark:text-white/80 sm:flex lg:gap-8 lg:text-base">
-          {navItems.map((item) => (
-            <li key={item} className="transition-all duration-200 hover:-translate-y-0.5 hover:text-black dark:hover:text-white">
-              <Link href="#" className="relative after:absolute after:-bottom-1 after:left-0 after:h-0.5 after:w-0 after:bg-[oklch(0.82_0.16_82)] after:transition-all after:duration-200 hover:after:w-full">
-                {item}
+          {navItems.map((item , index) => (
+            <li key={index} className="transition-all duration-200 hover:-translate-y-0.5 hover:text-black dark:hover:text-white">
+              <Link href={item.linkHref} className="relative after:absolute after:-bottom-1 after:left-0 after:h-0.5 after:w-0 after:bg-[oklch(0.82_0.16_82)] after:transition-all after:duration-200 hover:after:w-full">
+                {item.linkName}
               </Link>
             </li>
           ))}
@@ -50,13 +66,13 @@ export default function Navbar() {
 
         {isMenuOpen && (
           <ul className="flex animate-[fadeIn_0.2s_ease-out] flex-col gap-2 rounded-xl border border-[oklch(0.82_0.16_82)]/60 bg-[#2f2f2f] p-3 text-sm font-medium text-gray-700 dark:text-white/80 shadow-[0_12px_24px_rgba(0,0,0,0.25)] sm:hidden">
-            {navItems.map((item) => (
+            {navItems.map((item , index) => (
               <li
-                key={item}
+                key={index}
                 className="rounded-md px-2 py-2 transition-all duration-200 hover:bg-black/5 hover:text-black dark:hover:bg-white/5 dark:hover:text-white"
               >
-                <Link href="#" onClick={() => setIsMenuOpen(false)}>
-                  {item}
+                <Link href={item.linkHref} onClick={() => setIsMenuOpen(false)}>
+                  {item.linkName}
                 </Link>
               </li>
             ))}

@@ -3,72 +3,72 @@
 import { showBookDetails } from "@/api/showBookDetails";
 import Image from "next/image";
 
+
 export default async function BookDetailsPage({ params }:{ params: Promise<{id: string}>}) {
-        const { id } = await params;
-        console.log(id)
 
-        const bookData = await showBookDetails(id);
-        console.log(bookData);
+    const { id } = await params;
+    const bookData = await showBookDetails(id);
+    console.log(bookData);
+    if (!bookData) {
+      return (
+        <div className="flex min-h-[300px] w-full items-center justify-center px-4">
+          <p>Book details are unavailable right now.</p>
+        </div>
+      );
+    }
 
-        if (!bookData) {
-          return (
-            <div className="flex min-h-[300px] w-full items-center justify-center px-4">
-              <p>Book details are unavailable right now.</p>
-            </div>
-          );
-        }
+    const coverId = bookData.covers?.[0]
 
-        const coverId = bookData.covers?.[0]
+    const description = typeof bookData.description === "string"
+      ? bookData.description
+      : bookData.description?.value || "No description available."
 
-        const description = typeof bookData.description === "string"
-          ? bookData.description
-          : bookData.description?.value || "No description available."
+    const authorKey = bookData.authors[0].author.key;
+    const authorId = authorKey.split("/").pop();
 
-        const authorKey = bookData.authors[0].author.key;
-        const authorId = authorKey.split("/").pop();
-
-        const response = await fetch(`https://openlibrary.org/authors/${authorId}.json`)
-        const author = await response.json();
-        console.log(author)
+    const response = await fetch(`https://openlibrary.org/authors/${authorId}.json`)
+    const author = await response.json();
+    console.log(author)
+        
 
     return (
         <div className="flex w-full  justify-center  px-4 sm:px-6 lg:px-0">
-           <div className="w-[1280px] my-10 flex flex-col justify-start gap-14">
-             <div className="w-full flex items-start gap-6">
+           <div className="my-10 flex w-full xl:w-[1280px] flex-col justify-start gap-8 lg:gap-14">
+             <div className="flex w-full flex-col items-center gap-6 lg:flex-row lg:items-start xl:pl-0 sm:pl-4 pl-0">
                <Image 
                  src={
                   coverId
                   ? `https://covers.openlibrary.org/b/id/${coverId}-L.jpg` 
-                  :  '/placeholder-book.jpg'
+                  :  '/notfound.png'
                  }
                  alt={bookData.title}
                  width={300}
                  height={300}
-                 className="bg-gray-400 rounded-[15px] w-[250px] h-[390px]"
+                 className="h-auto w-full max-w-[250px] rounded-[15px] bg-gray-400 sm:max-w-[220px] lg:h-[390px] lg:w-[250px] lg:max-w-none"
                />
-               <div className="flex flex-col gap-4">
-                  <h1 className="text-[38px] font-bold">{bookData.title}</h1>
+               <div className="flex w-full flex-col gap-4 lg:w-auto">
+                  <h1 className="break-words text-center text-[30px] font-bold sm:text-[34px] lg:text-left lg:text-[38px]">{bookData.title}</h1>
                   <div>
-                    <p className="text-[12px] w-[650px]">{description}</p>
+                    <p className="w-full break-words text-[12px] lg:w-[650px]">{description}</p>
                   </div> 
                </div>
              </div>
-             <h1 className="text-[40px] font-bold">About author</h1>
-             <div className="w-full border-1 border-solid border-gray-300 dark:border-gray-800 shadow-xl rounded-[15px] flex pl-3 py-5 justify-start gap-4 items-start">
+             <h1 className="text-[32px] font-bold sm:text-[36px] lg:text-[40px]">About author</h1>
+             <div className="flex w-full flex-col items-center justify-start gap-4 rounded-[15px] border-1 border-solid border-gray-300 px-3 py-5 shadow-xl dark:border-gray-800 sm:flex-row sm:items-start lg:pl-3">
                 <Image 
                   src={
-                    author.photos?.[0]
+                    author.photos?.[0] 
                     ? `https://covers.openlibrary.org/a/id/${author.photos[0]}-L.jpg`
-                    : '/placeholder-author.jpg'
+                    : '/user.png'
                   }
                   alt={author.name}
                   width={100}
                   height={100}
-                  className="bg-gray-400 rounded-[15px] w-[150px] h-[150px] rounded-full"
+                  className="h-[120px] w-[120px] rounded-full bg-gray-400 sm:h-[130px] sm:w-[130px] lg:h-[150px] lg:w-[150px]"
                 />
-                <div>
-                  <h2 className="font-semi-bold text-[24px]">{author.name}</h2>
-                  <p className="text-[12px] w-[650px]">{author.bio ? author.bio : "No biography available."}</p>
+                <div className="w-full min-w-0">
+                  <h2 className="break-words text-center text-[24px] font-semi-bold sm:text-left xl:pl-0 pl-4">{author.name}</h2>
+                  <p className="w-full break-words text-[12px] lg:w-[650px] text-center sm:text-left">{author.bio ? author.bio : "No biography available."}</p>
                 </div>
              </div>
            </div>
