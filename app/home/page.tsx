@@ -101,7 +101,7 @@ export default function HomePage()
                   <ArrowRight className="text-[16px] text-[oklch(0.82_0.16_82)]" />
                 </div>
               </div>
-              <div className="flex justify-between items-center w-full">
+              <div className="flex flex-wrap xl:justify-between justify-start items-center xl:w-full w-[90%] mx-auto gap-4">
                  {categories.map((category, index) => {
                   const CategoryIcon = category.categoryIcon
                     return (
@@ -112,8 +112,9 @@ export default function HomePage()
                         whileHover={{ y: -5, scale: 1.03 }}
                         transition={{ duration: 0.3, delay: index * 0.07 }}
                         viewport={{ once: true, amount: 0.2 }}
+                        className="w-full sm:w-[150px]"
                       >
-                        <Card className="flex w-[150px] items-center gap-3 p-4">
+                        <Card className="flex sm:w-[150px] w-full items-center gap-3 p-4">
                           <CategoryIcon className="h-5 w-5 text-[oklch(0.82_0.16_82)]" aria-hidden="true" />
                           <p className="text-[16px] font-medium">{category.categoryName}</p>
                         </Card>
