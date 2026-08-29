@@ -1,4 +1,5 @@
 import { categories } from "@/categories";
+import { BooksOfCategory } from "@/components/BooksOfCategory";
 import { Button } from "@/components/ui/button";
 
 export default function CategoriesPage()
@@ -11,9 +12,9 @@ export default function CategoriesPage()
           </div>
           <div className="flex flex-wrap justify-center items-center gap-5 w-[600px]">
             {categories.map((item , index) => {
-                return (
-                  <Button key={index} variant="default" className="w-[130px] h-[50px]">{item.categoryName}</Button>
-                )
+              return (
+                <BooksOfCategory key={index} categoryName={item.categoryName}/>
+               )
             })}
           </div>
         </div>

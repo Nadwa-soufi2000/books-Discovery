@@ -8,3 +8,8 @@ export type bookObject =
 }
 
 export type booksArrayType = bookObject[];
+
+export type booksForCategoryType = {
+    title : string ;
+    cover_id : number ;
+}

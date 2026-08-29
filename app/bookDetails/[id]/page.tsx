@@ -39,7 +39,7 @@ export default async function BookDetailsPage({ params }:{ params: Promise<{id: 
                  src={
                   coverId
                   ? `https://covers.openlibrary.org/b/id/${coverId}-L.jpg` 
-                  :  '/notfound.png'
+                  :  '/notfound.jpg'
                  }
                  alt={bookData.title}
                  width={300}
