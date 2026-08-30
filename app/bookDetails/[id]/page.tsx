@@ -21,15 +21,27 @@ export default async function BookDetailsPage({ params }:{ params: Promise<{id: 
 
     const description = typeof bookData.description === "string"
       ? bookData.description
-      : bookData.description?.value || "No description available."
+      : bookData.description && typeof bookData.description === "object"
+        ? bookData.description.value || "No description available."
+        : "No description available."
 
-    const authorKey = bookData.authors[0].author.key;
-    const authorId = authorKey.split("/").pop();
+    const authorEntry = bookData.authors?.[0]?.author;
+    const authorKey = authorEntry?.key;
+    const authorId = authorKey ? authorKey.split("/").pop() : null;
 
-    const response = await fetch(`https://openlibrary.org/authors/${authorId}.json`)
-    const author = await response.json();
-    console.log(author)
-        
+    let author = null;
+
+    if (authorId) {
+      const response = await fetch(`https://openlibrary.org/authors/${authorId}.json`);
+      author = await response.json();
+    }
+
+    const authorName = author?.name || "Unknown author";
+    const authorBio = typeof author?.bio === "string"
+      ? author.bio
+      : author?.bio && typeof author.bio === "object"
+        ? author.bio.value || "No biography available."
+        : "No biography available.";
 
     return (
         <div className="flex w-full  justify-center  px-4 sm:px-6 lg:px-0">
@@ -57,23 +69,21 @@ export default async function BookDetailsPage({ params }:{ params: Promise<{id: 
              <div className="flex w-full flex-col items-center justify-start gap-4 rounded-[15px] border-1 border-solid border-gray-300 px-3 py-5 shadow-xl dark:border-gray-800 sm:flex-row sm:items-start lg:pl-3">
                 <Image 
                   src={
-                    author.photos?.[0] 
+                    author?.photos?.[0] 
                     ? `https://covers.openlibrary.org/a/id/${author.photos[0]}-L.jpg`
                     : '/user.png'
                   }
-                  alt={author.name}
+                  alt={authorName}
                   width={100}
                   height={100}
                   className="h-[120px] w-[120px] rounded-full bg-gray-400 sm:h-[130px] sm:w-[130px] lg:h-[150px] lg:w-[150px]"
                 />
                 <div className="w-full min-w-0">
-                  <h2 className="break-words text-center text-[24px] font-semi-bold sm:text-left xl:pl-0 pl-4">{author.name}</h2>
-                  <p className="w-full break-words text-[12px] lg:w-[650px] text-center sm:text-left">{author.bio ? author.bio : "No biography available."}</p>
+                  <h2 className="break-words text-center text-[24px] font-semi-bold sm:text-left xl:pl-0 pl-4">{authorName}</h2>
+                  <p className="w-full break-words text-[12px] lg:w-[650px] text-center sm:text-left">{authorBio}</p>
                 </div>
              </div>
            </div>
         </div>
     )
 }
-
-//https://covers.openlibrary.org/b/id/280246-L.jpg

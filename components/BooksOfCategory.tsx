@@ -44,12 +44,12 @@ export function BooksOfCategory({categoryName} : {categoryName : string}) {
            render={
               <Button 
                 variant="outline" 
-                className="w-[130px] h-[50px]"
+                className="w-[130px] h-[50px] max-sm:w-[calc(50%-0.5rem)] max-sm:min-w-[110px]"
                 onClick={() => getBooksOfCategory(categoryName)}
               >
                {categoryName}
               </Button>} />
-        <DialogContent>
+        <DialogContent className="max-sm:max-w-[calc(100vw-1rem)]">
           <DialogHeader>
             <DialogTitle>Books for {categoryName} category</DialogTitle>
             <DialogDescription>
