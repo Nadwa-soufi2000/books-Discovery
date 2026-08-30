@@ -4,7 +4,7 @@ import { Button } from "@/components/ui/button";
 
 export default function CategoriesPage()
 {
-    return(
+    return (
         <div className="my-20 flex flex-col items-center justify-center gap-10 w-full max-w-[1280px] mx-auto px-4 max-sm:my-10 max-sm:gap-6 max-sm:px-3">
           <div className="text-center max-sm:max-w-[90%]">
              <h1 className="text-[24px] font-bold max-sm:text-[22px]">Books Categories</h1>
@@ -18,5 +18,5 @@ export default function CategoriesPage()
             })}
           </div>
         </div>
-    )
+      )
 }
