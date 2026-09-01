@@ -69,10 +69,10 @@ export default function SearchPage() {
               <Sparkles className="h-3.5 w-3.5" />
               Search library
             </p>
-            <h1 className="text-3xl font-bold tracking-tight text-foreground sm:text-4xl lg:text-5xl">
+            <h1 className="sm:text-3xl text-lg font-bold tracking-tight text-foreground sm:text-4xl lg:text-5xl">
               Find your next great read
             </h1>
-            <p className="mt-3 max-w-md text-sm text-muted-foreground sm:text-base">
+            <p className="mt-3 max-w-md sm:text-sm text-[12px] text-muted-foreground sm:text-base">
               Explore fiction, fantasy, history, romance, and more from one clean, searchable library.
             </p>
           </div>
@@ -92,7 +92,7 @@ export default function SearchPage() {
               />
               <Button
                 onClick={handleSearch}
-                className="m-1 h-[42px] rounded-[12px] bg-[oklch(0.82_0.16_82)] px-5 text-white hover:bg-[oklch(0.74_0.16_82)]"
+                className="m-1 h-[42px] sm:w-auto w-[100px] rounded-[12px] bg-[oklch(0.82_0.16_82)] px-5 text-white hover:bg-[oklch(0.74_0.16_82)]"
               >
                 <Search className="mr-2 h-4 w-4" />
                 Search
@@ -102,7 +102,7 @@ export default function SearchPage() {
         </div>
       </motion.section>
 
-      <section className="flex flex-col gap-5">
+      <section className="flex flex-col gap-5 w-full">
         <div className="flex items-center justify-between gap-3">
           <div>
             <p className="text-sm font-medium uppercase tracking-[0.14em] text-[oklch(0.82_0.16_82)]">
@@ -124,7 +124,7 @@ export default function SearchPage() {
             ))}
           </div>
         ) : books.length > 0 ? (
-          <div className="grid gap-5 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
+          <div className="sm:w-full w-[87%] grid gap-5 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
             {books.filter((item) => item.cover_i || item.title).map((item, index) => (
               <CardsComponent
                 key={`${item.id}-${index}`}

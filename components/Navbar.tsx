@@ -41,9 +41,9 @@ export default function Navbar() {
 
           <div className="flex items-center gap-2 sm:hidden">
             <Button
-              variant="default"
+              variant="outline"
               size="icon"
-              className="h-10 w-10 border-[oklch(0.82_0.16_82)]/70 bg-white/5 text-white shadow-[0_0_0_1px_rgba(255,210,82,0.25)] transition-all duration-200 hover:scale-105 hover:bg-white/10"
+              className="h-10 w-10 border-[oklch(0.82_0.16_82)]/70 bg-background/80 text-foreground shadow-[0_0_0_1px_rgba(255,210,82,0.25)] transition-all duration-200 hover:scale-105 hover:bg-accent/80 dark:bg-background/70"
               onClick={() => setIsMenuOpen((prev) => !prev)}
               aria-expanded={isMenuOpen}
               aria-label="Toggle navigation menu"
@@ -65,11 +65,11 @@ export default function Navbar() {
         </ul>
 
         {isMenuOpen && (
-          <ul className="flex animate-[fadeIn_0.2s_ease-out] flex-col gap-2 rounded-xl border border-[oklch(0.82_0.16_82)]/60 bg-[#2f2f2f] p-3 text-sm font-medium text-gray-700 dark:text-white/80 shadow-[0_12px_24px_rgba(0,0,0,0.25)] sm:hidden">
+          <ul className="flex animate-[fadeIn_0.2s_ease-out] flex-col gap-2 rounded-xl border border-[oklch(0.82_0.16_82)]/60 bg-card/95 p-3 text-sm font-medium text-foreground shadow-[0_12px_24px_rgba(0,0,0,0.25)] sm:hidden">
             {navItems.map((item , index) => (
               <li
                 key={index}
-                className="rounded-md px-2 py-2 transition-all duration-200 hover:bg-black/5 hover:text-black dark:hover:bg-white/5 dark:hover:text-white"
+                className="rounded-md px-2 py-2 transition-all duration-200 hover:bg-accent hover:text-foreground"
               >
                 <Link href={item.linkHref} onClick={() => setIsMenuOpen(false)}>
                   {item.linkName}

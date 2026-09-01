@@ -15,10 +15,10 @@ export default function BooksSection({books} : {books: booksArrayType})
 {
     return (
         <div className="flex justify-center items-center w-full">
-           <Carousel opts={{align: "start",}} className="w-[70%] md:w-[91%] lg:w-[90%] xl:w-[98%]" >
+           <Carousel opts={{align: "start",}} className="w-[80%] sm:w-[40%] md:w-[75%] lg:w-[85%] xl:w-[98%]" >
               <CarouselContent className="pl-3">
                  {books.filter((item) => item.cover_i).map((item, index) => (
-                    <CarouselItem key={index} className="basis-full sm:basis-1/2 md:basis-1/3 xl:basis-1/4">
+                    <CarouselItem key={index} className="basis-full sm:basis-1/1 md:basis-1/2 lg:basis-1/3 xl:basis-1/4">
                       <div className="p-1">
                         <motion.div
                           initial={{ opacity: 0, y: 18 }}

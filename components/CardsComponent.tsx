@@ -14,7 +14,7 @@ export function CardsComponent({ id, author_name, cover_i, first_publish_year, t
 
   return (
     <Link href={`/bookDetails/${encodeURIComponent(id)}`} className="w-full h-full">
-      <Card className="h-full min-h-[420px] shadow-2xl w-full sm:w-[200px] md:w-[200px] lg:w-[250px] h-[460px] flex flex-col">
+      <Card className="h-full min-h-[420px] shadow-2xl w-full sm:w-[220px] md:w-[240px] lg:w-[250px] h-[460px] flex flex-col">
         <CardContent className="flex h-full flex-col items-center justify-between p-4">
           <div className="flex w-full justify-center overflow-hidden rounded-md">
             <div className="flex h-[220px] w-full items-center justify-center bg-[#f5f1e8]">
@@ -29,13 +29,13 @@ export function CardsComponent({ id, author_name, cover_i, first_publish_year, t
           </div>
 
           <div className="mt-4 text-center">
-            <p className="line-clamp-2 text-lg font-bold">{title}</p>
+            <p className="line-clamp-2 sm:text-lg text-[13px] font-bold">{title}</p>
             <p className="mt-2 text-sm text-muted-foreground">
               Written by: {Array.isArray(author_name) ? author_name.join(", ") : author_name}
             </p>
           </div>
 
-          <span className="mt-3 text-lg font-semibold"><span className="text-lg">Publish year : </span>{first_publish_year}</span>
+          <span className="mt-3 sm:text-lg text-[13px] font-semibold"><span className="text-lg">Publish year : </span>{first_publish_year}</span>
         </CardContent>
       </Card>
     </Link>

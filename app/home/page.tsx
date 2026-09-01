@@ -46,17 +46,17 @@ export default function HomePage()
   
     return(
       <div className="flex w-full justify-center items-center px-4 sm:px-6 lg:px-0">
-        <div className="w-full max-w-[1280px]">
+        <div className="w-full max-w-[1280px] py-10">
             <motion.div
-              className="flex flex-col items-center justify-center gap-8 w-full lg:flex-row lg:items-center lg:gap-3"
+              className="flex flex-col  items-center justify-center gap-8 xl:gap-0 xl:justify-between w-full lg:flex-row lg:items-center lg:gap-3"
               initial="hidden"
               animate="visible"
               variants={sectionVariants}
             >
-                <motion.div className="flex flex-col items-start justify-start gap-7 w-full max-w-[430px] lg:w-[430px] lg:items-start" variants={sectionVariants}>
+                <motion.div className="flex flex-col items-start justify-start gap-7 w-full lg:w-[430px] lg:items-start" variants={sectionVariants}>
                     <p className="text-[oklch(0.82_0.16_82)] text-[16px] text-center lg:text-left">DESCOVER YOUR NEXT BOOK.</p>
-                    <h1 className="text-[32px] sm:text-[38px] lg:text-[46px] text-center lg:text-left">Explore. Discover. <span className="text-[oklch(0.82_0.16_82)]">Read.</span></h1>
-                    <p className="text-[15px] w-full max-w-[270px] text-center lg:text-left lg:w-[270px]">Find Your next great read from thousands of books</p>
+                    <h1 className="text-[32px] sm:text-[38px] lg:text-[46px] text-left">Explore. Discover. <span className="text-[oklch(0.82_0.16_82)]">Read.</span></h1>
+                    <p className="text-[15px] w-full text-left lg:text-center lg:text-left lg:w-[270px]">Find Your next great read from thousands of books</p>
                     <div className="w-full h-[44px] flex items-center justify-between border-1 border-gray-400 rounded-[12px]">
                         <input className="w-[80%] outline-none h-full pl-3" placeholder="Search for books..." />
                         <div className="h-full w-[45px] flex justify-center items-center rounded-tr-[12px] rounded-br-[12px] bg-[oklch(0.82_0.16_82)]">
@@ -64,8 +64,8 @@ export default function HomePage()
                         </div>
                     </div>
                 </motion.div>
-                <motion.div className="w-full max-w-[670px] lg:w-auto" variants={sectionVariants}>
-                    <Image src='/hero.png' alt="" width={670} height={400} className="h-auto w-full max-w-[670px]"/>
+                <motion.div className="md:block hidden w-full max-w-[500px] lg:w-auto" variants={sectionVariants}>
+                    <Image src='/hero.png' alt="" width={500} height={400} className="h-auto w-full max-w-[670px]"/>
                 </motion.div>
               </motion.div>
               <motion.div
@@ -76,10 +76,10 @@ export default function HomePage()
                 variants={sectionVariants}
               >
                 <div className="xl:w-full w-[90%] mx-auto flex justify-between items-center gap-4">
-                    <p className="text-[24px] font-bold">Popular Books</p>
+                    <p className="sm:text-[24px] text-[18px] font-bold">Popular Books</p>
                     <div className="flex gap-2 items-center">
-                        <p className="text-[oklch(0.82_0.16_82)] text-[16px]">View All</p>
-                        <ArrowRight className="text-[16px] text-[oklch(0.82_0.16_82)]" />
+                        <p className="text-[oklch(0.82_0.16_82)] sm:text-[16px] text-[13px]">View All</p>
+                        <ArrowRight className="sm:text-[16px] text-[13px] text-[oklch(0.82_0.16_82)]" />
                     </div>
                 </div>
                 <BooksSection books={books} />
@@ -95,10 +95,10 @@ export default function HomePage()
               variants={sectionVariants}
             >
               <div className="xl:w-full w-[90%] mx-auto flex justify-between items-center gap-4">
-                <p className="text-[24px] font-bold">Categories</p>
+                <p className="sm:text-[24px] text-[18px] font-bold">Categories</p>
                 <div className="flex gap-2 items-center">
-                  <p className="text-[oklch(0.82_0.16_82)] text-[16px]">View All</p>
-                  <ArrowRight className="text-[16px] text-[oklch(0.82_0.16_82)]" />
+                  <p className="text-[oklch(0.82_0.16_82)] sm:text-[16px] text-[13px]">View All</p>
+                  <ArrowRight className="sm:text-[16px] text-[13px] text-[oklch(0.82_0.16_82)]" />
                 </div>
               </div>
               <div className="flex flex-wrap xl:justify-between justify-start items-center xl:w-full w-[90%] mx-auto gap-4">
@@ -135,10 +135,10 @@ export default function HomePage()
                 variants={sectionVariants}
               >
                 <div className="xl:w-full w-[90%] mx-auto flex justify-between items-center gap-4">
-                    <p className="text-[24px] font-bold">Featured Books</p>
+                    <p className="sm:text-[24px] text-[18px] font-bold">Featured Books</p>
                     <div className="flex gap-2 items-center">
-                        <p className="text-[oklch(0.82_0.16_82)] text-[16px]">View All</p>
-                        <ArrowRight className="text-[16px] text-[oklch(0.82_0.16_82)]" />
+                        <p className="text-[oklch(0.82_0.16_82)] sm:text-[16px] text-[13px]">View All</p>
+                        <ArrowRight className="sm:text-[16px] text-[13px] text-[oklch(0.82_0.16_82)]" />
                     </div>
                 </div>
                 <BooksSection books={featuredBooks} />
